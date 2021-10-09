@@ -62,9 +62,14 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
+  assets:
+    - asset/demonsouls.jpg
+    - asset/darksouls1.jpg
+    - asset/darksouls2.jpg
+    - asset/darksouls3.jpg
+    - asset/sekiro.jpg
+    - asset/bloodborne.jpg
+    - asset/eldenring.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

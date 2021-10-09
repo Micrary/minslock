@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.teal,
       ),
-      home: const MyHomePage(title: 'Minslock'),
+      home: const MyHomePage(title: 'MinSouls'),
     );
   }
 }
@@ -74,7 +74,55 @@ class _MyHomePageState extends State<MyHomePage> {
       for (var item in ls) {
         locks.add(Lock.from(item));
       }
+      souls();
     });
+  }
+
+  void souls() {
+    if (locks.isEmpty) {
+      var ds = Lock();
+      ds.name = "Demon`s Souls";
+      ds.time = DateTime(2009, 2, 5);
+      ds.back = "asset/demonsouls.jpg";
+
+      var ds1 = Lock();
+      ds1.name = "Dark Souls I";
+      ds1.time = DateTime(2011, 9, 22);
+      ds1.back = "asset/darksouls1.jpg";
+
+      var bb = Lock();
+      bb.name = "Bloodborne";
+      bb.time = DateTime(2015, 3, 24);
+      bb.back = "asset/bloodborne.jpg";
+
+      var ds2 = Lock();
+      ds2.name = "Dark Souls II";
+      ds2.time = DateTime(2015, 4, 2);
+      ds2.back = "asset/darksouls2.jpg";
+
+      var ds3 = Lock();
+      ds3.name = "Dark Souls III";
+      ds3.time = DateTime(2016, 3, 24);
+      ds3.back = "asset/darksouls3.jpg";
+
+      var sk = Lock();
+      sk.name = "SEKIRO : Shadows Die Twice";
+      sk.time = DateTime(2019, 3, 22);
+      sk.back = "asset/sekiro.jpg";
+
+      var er = Lock();
+      er.name = "Elden Ring";
+      er.time = DateTime(2022, 1, 22);
+      er.back = "asset/eldenring.jpg";
+      
+      locks.add(er);
+      locks.add(sk);
+      locks.add(ds3);
+      locks.add(ds2);
+      locks.add(bb);
+      locks.add(ds1);
+      locks.add(ds);
+    }
   }
 
   void save() {
@@ -165,7 +213,10 @@ class _MyHomePageState extends State<MyHomePage> {
             ? null
             : BoxDecoration(
                 image: DecorationImage(
-                    image: FileImage(File(lock.back)), fit: BoxFit.cover)),
+                    image: lock.back.contains("asset")
+                        ? AssetImage(lock.back) as ImageProvider
+                        : FileImage(File(lock.back)),
+                    fit: BoxFit.cover)),
         margin: const EdgeInsets.symmetric(),
         child: body,
       ),
@@ -303,13 +354,13 @@ class _NewOnePageState extends State<NewOnePage> {
                 Fluttertoast.showToast(
                     msg: "点击文字位置输入，空白位置选择图片", toastLength: Toast.LENGTH_LONG);
               },
-              icon: const Icon(Icons.help)),
+              icon: const Icon(Icons.ac_unit_sharp)),
           IconButton(
               onPressed: () {
                 var data = lock.to();
                 Navigator.of(context).pop(data);
               },
-              icon: const Icon(Icons.save))
+              icon: const Icon(Icons.timer))
         ],
       ),
       bottomSheet: Container(
@@ -338,7 +389,7 @@ class _NewOnePageState extends State<NewOnePage> {
                       }
                     }
                   },
-                  icon: const Icon(Icons.check)),
+                  icon: const Icon(Icons.sentiment_satisfied_alt)),
               labelText: info,
               border: const OutlineInputBorder()),
         ),
@@ -353,7 +404,9 @@ class _NewOnePageState extends State<NewOnePage> {
                     ? null
                     : BoxDecoration(
                         image: DecorationImage(
-                            image: FileImage(File(lock.back)),
+                            image: lock.back.contains("asset")
+                                ? AssetImage(lock.back) as ImageProvider
+                                : FileImage(File(lock.back)),
                             fit: BoxFit.cover)),
                 margin: const EdgeInsets.symmetric(),
                 child: Column(
@@ -530,7 +583,7 @@ class _EditerPageState extends State<EditerPage> {
                     msg: "长按上移 双击删除\n刷新撤销 返回会保存",
                     toastLength: Toast.LENGTH_LONG);
               },
-              icon: const Icon(Icons.help)),
+              icon: const Icon(Icons.ac_unit_sharp)),
           IconButton(
               onPressed: () async {
                 var res = await Navigator.of(context).push(
@@ -542,7 +595,7 @@ class _EditerPageState extends State<EditerPage> {
                   save();
                 }
               },
-              icon: const Icon(Icons.add))
+              icon: const Icon(Icons.more_time_rounded))
         ],
       ),
       body: RefreshIndicator(
@@ -636,7 +689,10 @@ class _EditerPageState extends State<EditerPage> {
             ? null
             : BoxDecoration(
                 image: DecorationImage(
-                    image: FileImage(File(lock.back)), fit: BoxFit.cover)),
+                    image: lock.back.contains("asset")
+                        ? AssetImage(lock.back) as ImageProvider
+                        : FileImage(File(lock.back)),
+                    fit: BoxFit.cover)),
         margin: const EdgeInsets.symmetric(),
         child: InkWell(
           child: body,
