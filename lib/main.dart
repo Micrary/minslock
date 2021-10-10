@@ -122,6 +122,8 @@ class _MyHomePageState extends State<MyHomePage> {
       locks.add(bb);
       locks.add(ds1);
       locks.add(ds);
+
+      save();
     }
   }
 
